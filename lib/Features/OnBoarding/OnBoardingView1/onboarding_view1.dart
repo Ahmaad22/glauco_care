@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:glauco_care/Core/Constants/colors_const.dart';
 import 'package:glauco_care/Core/Shared/Customs/custom_main_button.dart';
+import 'package:glauco_care/Features/OnBoarding/LogIn/login_view.dart';
+import 'package:glauco_care/Features/OnBoarding/OnBoardingView2/onboarding_view2.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OnboardingView1 extends StatelessWidget {
-  const OnboardingView1({Key? key});
+  const OnboardingView1({super.key});
   static const String routeName = "OnboardingView1";
 
   @override
@@ -64,7 +66,9 @@ class OnboardingView1 extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const CustomMainButton(title: "Get Started"),
+             CustomMainButton(title: "Get Started",onTap:(){
+              Navigator.pushNamed(context, OnboardingView2.routeName);
+            },),
             const SizedBox(
               height: 24,
             ),
@@ -80,13 +84,19 @@ class OnboardingView1 extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                Text(
-                  'Sign in',
-                  textAlign: TextAlign.start,
-                  style: GoogleFonts.montserrat(
-                    color: ConstColors.lightPrimaryColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
+                GestureDetector(
+onTap: (){
+  Navigator.pushNamed(context, LogInView.routeName);
+},
+
+                  child: Text(
+                    'Sign in',
+                    textAlign: TextAlign.start,
+                    style: GoogleFonts.montserrat(
+                      color: ConstColors.lightPrimaryColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ],

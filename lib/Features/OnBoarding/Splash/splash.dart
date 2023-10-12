@@ -5,7 +5,7 @@ import 'package:glauco_care/Features/OnBoarding/OnBoardingView1/onboarding_view1
 import 'package:google_fonts/google_fonts.dart';
 
 class SplashView extends StatelessWidget {
-  const SplashView({Key? key});
+  const SplashView({super.key});
   static const String routeName = "SplashView";
   
   @override
@@ -13,13 +13,16 @@ class SplashView extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
+          gradient:LinearGradient(
             colors: [
-                      ConstColors.darkPrimaryColor,
-                      ConstColors.lightPrimaryColor.withOpacity(.26)
+
+                                    ConstColors.lightPrimaryColor.withOpacity(.1),
+                                    ConstColors.darkPrimaryColor,
+
+
                   ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+                begin: Alignment.topCenter,
+                end:  Alignment.bottomCenter
           ),
         ),
         child: AnimatedSplashScreen(
