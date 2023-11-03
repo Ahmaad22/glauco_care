@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:glauco_care/Core/Constants/colors_const.dart';
 import 'package:glauco_care/Features/Home/home_view.dart';
 import 'package:glauco_care/Features/Hospitals/hospitals_view.dart';
@@ -38,22 +39,22 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           tabBackgroundColor: const Color(0xFF252836),
           padding: const EdgeInsets.all(16),
           tabBorderRadius: 16,
-          tabs: const [
+          tabs: [
             GButton(
               icon: Icons.home,
               text: "Home",
             ),
             GButton(
-              icon: Icons.search,
+              icon: FontAwesomeIcons.facebookMessenger
+              ,
               text: "Messanger",
             ),
             GButton(
-              icon: Icons.file_download_outlined,
+              icon: FontAwesomeIcons.hospital,
               text: "Hospitals",
             ),
             GButton(
-              icon: Icons.person,
-              text: "Scan",
+  icon: FontAwesomeIcons.hospital,              text: "Scan",
             )
           ],
           selectedIndex: _selectedIndex,

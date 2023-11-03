@@ -6,6 +6,7 @@ import 'package:glauco_care/Core/Shared/Customs/custom_main_button.dart';
 import 'package:glauco_care/Core/Shared/Customs/custom_text_form_field.dart';
 import 'package:glauco_care/Core/Shared/Functions/functions.dart';
 import 'package:glauco_care/Core/Shared/Validation/validation.dart';
+import 'package:glauco_care/Core/Shared/widgets/bottom_navigation_bar.dart';
 import 'package:glauco_care/Features/OnBoarding/LogIn/login_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -114,8 +115,8 @@ class _SignUpViewState extends State<SignUpView> {
                           //     email: emailAddress!,
                           //     password: password!,
                           //   );
-                          //   Navigator.pushNamed(
-                          //       context, CustomBottomNavigationBar.routeName);
+                            Navigator.pushNamed(
+                                context, CustomBottomNavigationBar.routeName);
                           // } on FirebaseAuthException catch (e) {
                           //   if (e.code == 'weak-password') {
                           //     showSnackBar(

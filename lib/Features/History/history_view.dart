@@ -13,75 +13,40 @@ class HistoryView extends StatelessWidget {
           const CustomAppBar(
             text: "History",
           ),
-          SizedBox(
+       const SizedBox(
             height: 40,
           ),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(horizontal: 24),
-          //   child: Container(
-          //     width: double.infinity,
-          //     decoration: BoxDecoration(
-          //         borderRadius: BorderRadius.circular(16),
-          //         color: const Color(0x1ef1f1f1)),
-          //     child: Padding(
-          //       padding: const EdgeInsets.all(16),
-          //       child: Column(
-          //         children: [
-          //           Row(mainAxisAlignment: MainAxisAlignment.start,
-          //             children: [
-          //               Text(
-          //                 "Positive",
-          //                 textAlign: TextAlign.start,
-          //                 style: GoogleFonts.montserrat(
-          //                   color: ConstColors.lightPrimaryColor,
-          //                   fontSize: 16,
-          //                   fontWeight: FontWeight.w700,
-          //                 ),
-          //               ),
-          //             ],
-          //           ),
-          //           Image.asset(
-          //             "Assets/GlaucomaResult.png",
-          //             height: 250,
-          //           ),
-          //           Row(
-          //             mainAxisAlignment: MainAxisAlignment.end,
-          //             children: [
-          //               SizedBox(height: 16,),
-          //               Text(
-          //                 "30-1-2023",
-          //                 textAlign: TextAlign.start,
-          //                 style: GoogleFonts.montserrat(
-          //                   color: ConstColors.whiteColor,
-          //                   fontSize: 16,
-          //                   fontWeight: FontWeight.w700,
-          //                 ),
-          //               ),
-          //             ],
-          //           ),                      SizedBox(height: 16,),
-          
-          //           Text(
-          //             "You have been diagnosed with glaucoma. ",
-          //             textAlign: TextAlign.start,
-          //             style: GoogleFonts.montserrat(
-          //               color: ConstColors.lightPrimaryColor,
-          //               fontSize: 16,
-          //               fontWeight: FontWeight.w700,
-          //             ),
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          // ),
-Spacer(flex: 2,),
-          Padding(
-            padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.25),
-            child: Image.asset("Assets/NoHistory.png",width: double.infinity,height: 170,),
-          ),Spacer(flex: 3,),
-
+          //ResultCardView()
+         NoHistory(),
         ],
       ),
+    );
+  }
+}
+
+class NoHistory extends StatelessWidget {
+  const NoHistory({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+       SizedBox(height: MediaQuery.of(context).size.height*0.2,),
+        Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.25),
+          child: Image.asset(
+            "Assets/NoHistory.png",
+            width: double.infinity,
+            height: 170,
+          ),
+        ),
+       SizedBox(height: MediaQuery.of(context).size.height*0.25,),
+    
+      ],
     );
   }
 }

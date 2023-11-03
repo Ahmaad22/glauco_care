@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glauco_care/Core/Shared/widgets/bottom_navigation_bar.dart';
+import 'package:glauco_care/Features/Favourites/favourites_view.dart';
 import 'package:glauco_care/Features/History/history_view.dart';
 import 'package:glauco_care/Features/Home/home_view.dart';
 import 'package:glauco_care/Features/Hospitals/hospitals_view.dart';
@@ -13,6 +14,7 @@ import 'package:glauco_care/Features/OnBoarding/ResetPassword/reset_password_vie
 import 'package:glauco_care/Features/OnBoarding/SignUp/sign_up_view.dart';
 import 'package:glauco_care/Features/OnBoarding/Splash/splash.dart';
 import 'package:glauco_care/Features/OnBoarding/Verification/verification_view.dart';
+import 'package:glauco_care/Features/Personal%20Details/personal_details.dart';
 import 'package:glauco_care/Features/Profile/profile_view.dart';
 import 'package:glauco_care/Features/Scan/ImageUpload/image_upload.dart';
 import 'package:glauco_care/Features/Scan/OctScanUpload/oct_scan_upload.dart';
@@ -63,9 +65,19 @@ class Routes {
           builder: (context) => const HomeView(),
           settings: settings,
         );
+         case FavouritesView.routeName:
+        return MaterialPageRoute(
+          builder: (context) => const FavouritesView(),
+          settings: settings,
+        );
         case HistoryView.routeName:
         return MaterialPageRoute(
           builder: (context) => const HistoryView(),
+          settings: settings,
+        );
+        case PersonalDetailsView.routeName:
+        return MaterialPageRoute(
+          builder: (context) => const PersonalDetailsView(),
           settings: settings,
         );
         case ResultView.routeName:

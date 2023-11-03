@@ -21,5 +21,15 @@ class Validation {
       }
       return null;
     }
+
+    
   }
+
+   static String? nameValidation(String? value) {
+    if (value!.isEmpty) {
+      return 'Password mustn\'t be empty';
+    } else {
+      
+      return null;
+    }}
 }
