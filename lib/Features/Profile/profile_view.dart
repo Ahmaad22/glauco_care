@@ -2,22 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:glauco_care/Core/Constants/colors_const.dart';
 import 'package:glauco_care/Core/Shared/Customs/custom_app_bar.dart';
 import 'package:glauco_care/Core/Shared/Customs/custom_profile_options.dart';
-import 'package:glauco_care/Features/Favourites/favourites_view.dart';
 import 'package:glauco_care/Features/History/history_view.dart';
 import 'package:glauco_care/Features/OnBoarding/LogIn/login_view.dart';
 import 'package:glauco_care/Features/Personal%20Details/personal_details.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
+class ProfileView extends StatefulWidget {
+  const ProfileView({Key? key}) : super(key: key);
   static const String routeName = "ProfileView";
+
+  @override
+  _ProfileViewState createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
+  bool isDarkModeEnabled = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomAppBar(
+            const CustomAppBar(
               text: "Profile",
             ),
             Padding(
@@ -25,15 +32,14 @@ class ProfileView extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 24,
                   ),
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 60,
-                    backgroundImage: NetworkImage(
-                        "https://scontent.fcai19-4.fna.fbcdn.net/v/t39.30808-6/357726268_1334399570446800_5002302892859737700_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHS5F4B2LF1r4dgfmTh0HNGXazRQKpl3uRdrNFAqmXe5LqckCumtoPFvfU0nsNpCRv5D0X4UO6zwm9LeY7BIL3-&_nc_ohc=ce4BFKd0LWEAX9-ajk_&_nc_ht=scontent.fcai19-4.fna&oh=00_AfAG3kkMKj9iIfnCvqjFVyoqxQcqtawIlDksXrUGe13ZSQ&oe=6548E45E"),
+                    backgroundImage: AssetImage("Assets/chatbot_medical.png"),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   Text(
@@ -45,7 +51,7 @@ class ProfileView extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 54,
                   ),
                   GestureDetector(
@@ -53,51 +59,90 @@ class ProfileView extends StatelessWidget {
                       Navigator.pushNamed(
                           context, PersonalDetailsView.routeName);
                     },
-                    child: CustomProfileOption(
+                    child: const CustomProfileOption(
                       icon: Icons.account_circle_outlined,
                       title: 'Personal Details',
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 24,
                   ),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, HistoryView.routeName);
                     },
-                    child: CustomProfileOption(
+                    child: const CustomProfileOption(
                       icon: Icons.history_outlined,
                       title: 'History',
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 24,
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, FavouritesView.routeName);
+                      setState(() {
+                        isDarkModeEnabled = !isDarkModeEnabled;
+                      });
                     },
-                    child: CustomProfileOption(
-                      icon: Icons.favorite_outline_outlined,
-                      title: 'Favourites',
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor:
+                              ConstColors.whiteColor.withOpacity(0.05),
+                          radius: 20,
+                          child: Icon(
+                            Icons.wb_sunny,
+                            color: ConstColors.lightPrimaryColor,
+                            size: 24,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 24,
+                        ),
+                        Text(
+                          "Theme Mode",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.montserrat(
+                            color: ConstColors.lightPrimaryColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Spacer(),
+                        AnimatedContainer(
+                          duration: Duration(milliseconds: 300),
+                          width: 80, // Adjust as needed
+                          height: 35, // Adjust as needed
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: isDarkModeEnabled
+                                ? ConstColors.lightPrimaryColor
+                                : Colors.grey,
+                          ),
+                          alignment: isDarkModeEnabled
+                              ? Alignment.centerRight
+                              : Alignment.centerLeft,
+                          child: Container(
+                            width: 40, // Ball size
+                            height: 40, // Ball size
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(
-                    height: 24,
-                  ),
-                  CustomProfileOption(
-                    icon: Icons.wb_sunny,
-                    title: 'Dark mode',
-                    isDarkMode: true,
-                  ),
-                  SizedBox(
+                  const SizedBox(
                     height: 24,
                   ),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, LogInView.routeName);
                     },
-                    child: CustomProfileOption(
+                    child: const CustomProfileOption(
                       icon: Icons.logout_outlined,
                       title: 'Log out',
                       isLogOut: true,
@@ -109,6 +154,9 @@ class ProfileView extends StatelessWidget {
           ],
         ),
       ),
+      backgroundColor: isDarkModeEnabled
+          ? ConstColors.darkBackgroundColor
+          : Color.fromARGB(255, 207, 207, 207),
     );
   }
 }

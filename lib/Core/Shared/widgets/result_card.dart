@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:glauco_care/Core/Constants/colors_const.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,7 +20,8 @@ class ResultCardView extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              Row(mainAxisAlignment: MainAxisAlignment.start,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
                     "Positive",
@@ -41,7 +41,9 @@ class ResultCardView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  SizedBox(height: 16,),
+                  const SizedBox(
+                    height: 16,
+                  ),
                   Text(
                     "30-1-2023",
                     textAlign: TextAlign.start,
@@ -52,8 +54,10 @@ class ResultCardView extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),                      SizedBox(height: 16,),
-    
+              ),
+              const SizedBox(
+                height: 16,
+              ),
               Text(
                 "You have been diagnosed with glaucoma. ",
                 textAlign: TextAlign.start,

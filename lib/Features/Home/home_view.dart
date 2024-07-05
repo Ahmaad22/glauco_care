@@ -9,28 +9,27 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            CustomAppBar(
-              text: "Home",
-              isHome: true,
-            ),
-            Column(
-              children: [
-                SizedBox(
-                  height: 24,
-                ),
-                CustomSearchTextField(),
-                SizedBox(
-                  height: 36,
-                ),
-                HomeBodyView(),
-                // EmptySearch()
-              ],
-            )
-          ],
-        ),
+      // backgroundColor: Theme.of(context).colorScheme.background,
+      body: Column(
+        children: [
+          const CustomAppBar(
+            text: "Home",
+            isHome: true,
+          ),
+          Column(
+            children: [
+              const SizedBox(
+                height: 24,
+              ),
+              CustomSearchTextField(),
+              const SizedBox(
+                height: 36,
+              ),
+              const HomeBodyView(),
+              // EmptySearch()
+            ],
+          )
+        ],
       ),
     );
   }

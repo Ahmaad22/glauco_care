@@ -7,17 +7,17 @@ class HistoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Column(
         children: [
-          const CustomAppBar(
+          CustomAppBar(
             text: "History",
           ),
-       const SizedBox(
+          SizedBox(
             height: 40,
           ),
           //ResultCardView()
-         NoHistory(),
+          NoHistory(),
         ],
       ),
     );
@@ -34,7 +34,9 @@ class NoHistory extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-       SizedBox(height: MediaQuery.of(context).size.height*0.2,),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.2,
+        ),
         Padding(
           padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * 0.25),
@@ -44,8 +46,9 @@ class NoHistory extends StatelessWidget {
             height: 170,
           ),
         ),
-       SizedBox(height: MediaQuery.of(context).size.height*0.25,),
-    
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.25,
+        ),
       ],
     );
   }

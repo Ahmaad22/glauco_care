@@ -39,6 +39,13 @@ dependencies:
   google_fonts: ^6.1.0
   google_nav_bar: ^5.0.6
   font_awesome_flutter: ^10.5.0
+  shared_preferences: ^2.2.2
+  http: ^1.2.0
+  flutter_bloc: ^8.1.4
+  mime: ^1.0.5
+  image_picker: ^1.0.8
+  socket_io_client: ^2.0.3+1
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:

@@ -19,7 +19,7 @@ class ScanView extends StatelessWidget {
           const CustomAppBar(
             text: "Scan",
           ),
-          Spacer(
+          const Spacer(
             flex: 2,
           ),
           Padding(
@@ -39,7 +39,7 @@ class ScanView extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 48,
           ),
           Padding(
@@ -51,19 +51,21 @@ class ScanView extends StatelessWidget {
               },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
-            child: CustomMainButton2(
-              title: 'Eye picture',
-              onTap: () {
-                Navigator.pushNamed(context, ImageUploadView.routeName);
-              },
-            ),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
+          //   child: CustomMainButton2(
+          //     title: 'Eye picture',
+          //     onTap: () {
+          //       Navigator.pushNamed(context, ImageUploadView.routeName);
+          //     },
+          //   ),
+          // ),
+          SizedBox(
+            height: 40,
           ),
           GestureDetector(
-            onTap:(){
-                              Navigator.pushNamed(context, SymptomsView.routeName);
-
+            onTap: () {
+              Navigator.pushNamed(context, SymptomsView.routeName);
             },
             child: Text(
               'See Symptoms of the disease ',
@@ -75,7 +77,7 @@ class ScanView extends StatelessWidget {
               ),
             ),
           ),
-          Spacer(
+          const Spacer(
             flex: 5,
           ),
         ],

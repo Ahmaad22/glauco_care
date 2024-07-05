@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:glauco_care/Core/Constants/colors_const.dart';
 import 'package:glauco_care/Core/Shared/Customs/custom_on_off.dart';
@@ -29,7 +27,7 @@ class CustomProfileOption extends StatelessWidget {
             size: 24,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 24,
         ),
         Text(
@@ -41,14 +39,14 @@ class CustomProfileOption extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        Spacer(
+        const Spacer(
           flex: 2,
         ),
         isLogOut
             ? Container()
             : isDarkMode
                 ? CustomOnOff(color: ConstColors.lightPrimaryColor)
-                : Icon(
+                : const Icon(
                     Icons.arrow_forward_ios,
                     color: ConstColors.lightPrimaryColor,
                     size: 20,

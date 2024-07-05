@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glauco_care/Core/Constants/colors_const.dart';
 import 'package:glauco_care/Core/Constants/icon_const.dart';
+import 'package:glauco_care/Core/Helper/show_snack_bar.dart';
 import 'package:glauco_care/Core/Shared/Customs/custom_app_bar.dart';
 import 'package:glauco_care/Core/Shared/Customs/custom_main_button.dart';
 import 'package:glauco_care/Core/Shared/Customs/custom_text_form_field.dart';
 import 'package:glauco_care/Core/Shared/Validation/validation.dart';
+import 'package:glauco_care/Features/Auth/Manager/user_cubit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// ignore: must_be_immutable
 class PersonalDetailsView extends StatelessWidget {
-  const PersonalDetailsView({super.key});
+  PersonalDetailsView({super.key});
   static const String routeName = "PersonalDetailsView";
 
+  String? newEmail;
+  String? newName;
+  String? newPassword;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomAppBar(
+            const CustomAppBar(
               text: "Personal details",
             ),
             Padding(
@@ -25,15 +32,14 @@ class PersonalDetailsView extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 24,
                   ),
-                  CircleAvatar(
-                    radius: 60,
-                    backgroundImage: NetworkImage(
-                        "https://scontent.fcai19-4.fna.fbcdn.net/v/t39.30808-6/357726268_1334399570446800_5002302892859737700_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHS5F4B2LF1r4dgfmTh0HNGXazRQKpl3uRdrNFAqmXe5LqckCumtoPFvfU0nsNpCRv5D0X4UO6zwm9LeY7BIL3-&_nc_ohc=ce4BFKd0LWEAX9-ajk_&_nc_ht=scontent.fcai19-4.fna&oh=00_AfAG3kkMKj9iIfnCvqjFVyoqxQcqtawIlDksXrUGe13ZSQ&oe=6548E45E"),
-                  ),
-                  SizedBox(
+                  const CircleAvatar(
+                      radius: 60,
+                      backgroundImage:
+                          AssetImage("Assets/chatbot_medical.png")),
+                  const SizedBox(
                     height: 8,
                   ),
                   Text(
@@ -45,33 +51,42 @@ class PersonalDetailsView extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 54,
                   ),
                   CustomTextFormField(
                       obscureText: false,
                       suffixIcon: null,
+                      onChanged: (p0) {
+                        newName = p0;
+                      },
                       validator: (value) {
                         return Validation.nameValidation(value);
                       },
                       isPassword: false,
                       lable: "Full name"),
-                  SizedBox(
+                  const SizedBox(
                     height: 24,
                   ),
                   CustomTextFormField(
                       obscureText: false,
                       suffixIcon: null,
+                      onChanged: (p0) {
+                        newEmail = p0;
+                      },
                       validator: (value) {
                         return Validation.emailValidation(value);
                       },
                       isPassword: false,
                       lable: "Email Address"),
-                  SizedBox(
+                  const SizedBox(
                     height: 24,
                   ),
                   CustomTextFormField(
                     suffixIcon: ConstIcons.solidEyeSlashIcon,
+                    onChanged: (p0) {
+                      newPassword = p0;
+                    },
                     validator: (value) {
                       return Validation.passwordValidation(value);
                     },
@@ -79,11 +94,37 @@ class PersonalDetailsView extends StatelessWidget {
                     isPassword: true,
                     lable: 'Password',
                   ),
-
- SizedBox(
+                  const SizedBox(
                     height: 36,
                   ),
-                  CustomMainButton(title: "Update", onTap: (){})
+                  CustomMainButton(
+                      title: "Update",
+                      onTap: () async {
+                        await BlocProvider.of<UserCubit>(context)
+                            .updateUserName(
+                                context: context,
+                                email: BlocProvider.of<UserCubit>(context)
+                                    .userModel
+                                    .email!,
+                                name: newName!);
+                        // ignore: use_build_context_synchronously
+                        await BlocProvider.of<UserCubit>(context).updateEmail(
+                            context: context,
+                            email: BlocProvider.of<UserCubit>(context)
+                                .userModel
+                                .email!,
+                            newEmail: newEmail!);
+                        // ignore: use_build_context_synchronously
+                        await BlocProvider.of<UserCubit>(context)
+                            .updatePassword(
+                          password: newPassword!,
+                          context: context,
+                          email: BlocProvider.of<UserCubit>(context)
+                              .userModel
+                              .email!,
+                        );
+                        showSnackBar(context, "updated successfully ");
+                      })
                 ],
               ),
             )

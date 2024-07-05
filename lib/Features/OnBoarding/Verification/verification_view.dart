@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glauco_care/Core/Constants/colors_const.dart';
+import 'package:glauco_care/Core/Helper/show_snack_bar.dart';
 import 'package:glauco_care/Core/Shared/Customs/custom_app_bar.dart';
 import 'package:glauco_care/Core/Shared/Customs/custom_main_button.dart';
 import 'package:glauco_care/Core/Shared/Customs/custom_otp_text_form_field.dart';
+import 'package:glauco_care/Features/Auth/Manager/user_cubit.dart';
 import 'package:glauco_care/Features/OnBoarding/CreateNewPassword/create_new_password_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class VerificationView extends StatefulWidget {
-  const VerificationView({super.key});
+  const VerificationView({
+    super.key,
+    required this.emailAddress,
+  });
 
   static const String routeName = "VerificationView";
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final String emailAddress;
 
   @override
   State<VerificationView> createState() => _VerificationViewState();
@@ -31,8 +38,7 @@ class _VerificationViewState extends State<VerificationView> {
           key: VerificationView._formKey,
           child: Column(
             children: [
-              const CustomAppBar(
-              ),
+              const CustomAppBar(),
               const SizedBox(
                 height: 45,
               ),
@@ -118,10 +124,22 @@ class _VerificationViewState extends State<VerificationView> {
                 child: CustomMainButton(
                   title: 'Continue',
                   onTap: () {
+                    print("haa" + widget.emailAddress);
                     if (VerificationView._formKey.currentState!.validate()) {
                       VerificationView._formKey.currentState!.save();
-                      Navigator.pushNamed(
-                          context, CreateNewPasswordView.routeName);
+
+                      print(otp1! + otp2! + otp3! + otp4!);
+                      if (BlocProvider.of<UserCubit>(context).verficationCode ==
+                          otp1! + otp2! + otp3! + otp4!) {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return CreateNewPasswordView(
+                            emailAddress: widget.emailAddress,
+                          );
+                        }));
+                      } else {
+                        showSnackBar(context, "Invalid code");
+                      }
                     } else {
                       setState(() {
                         autovalidateMode = AutovalidateMode.always;

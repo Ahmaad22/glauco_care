@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:glauco_care/Core/Shared/Customs/custom_app_bar.dart';
-import 'package:glauco_care/Core/Shared/widgets/doctor_card.dart';
 
 class FavouritesView extends StatelessWidget {
   const FavouritesView({super.key});
@@ -8,7 +7,7 @@ class FavouritesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -19,13 +18,15 @@ class FavouritesView extends StatelessWidget {
               height: 36,
             ),
             Column(
-              children: [DoctorCard(), DoctorCard(), DoctorCard(), DoctorCard()
-              
-              ,  SizedBox(
-              height: 36,
-            ),
+              children: [
+                // DoctorCard(),
+                // DoctorCard(),
+                // DoctorCard(),
+                // DoctorCard(),
+                SizedBox(
+                  height: 36,
+                ),
               ],
-            
             )
           ],
         ),

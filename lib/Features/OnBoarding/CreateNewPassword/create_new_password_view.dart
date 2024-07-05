@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glauco_care/Core/Constants/icon_const.dart';
+import 'package:glauco_care/Core/Helper/show_snack_bar.dart';
 import 'package:glauco_care/Core/Shared/Customs/custom_text_form_field.dart';
+import 'package:glauco_care/Features/Auth/Manager/user_cubit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../Core/Constants/colors_const.dart';
@@ -10,14 +13,17 @@ import '../../../Core/Shared/Functions/functions.dart';
 import '../../../Core/Shared/Validation/validation.dart';
 
 class CreateNewPasswordView extends StatefulWidget {
-  const CreateNewPasswordView({super.key});
+  const CreateNewPasswordView({super.key, required this.emailAddress});
 
   static const String routeName = "CreateNewPasswordView";
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  final String emailAddress;
   @override
   State<CreateNewPasswordView> createState() => _CreateNewPasswordViewState();
 }
+
+String? password;
+String? confirmPassword;
 
 class _CreateNewPasswordViewState extends State<CreateNewPasswordView> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
@@ -32,8 +38,7 @@ class _CreateNewPasswordViewState extends State<CreateNewPasswordView> {
             autovalidateMode: autovalidateMode,
             child: Column(
               children: [
-                const CustomAppBar(
-                ),
+                const CustomAppBar(),
                 const SizedBox(
                   height: 45,
                 ),
@@ -69,6 +74,9 @@ class _CreateNewPasswordViewState extends State<CreateNewPasswordView> {
                     obscureText: true,
                     isPassword: true,
                     lable: 'New Password',
+                    onChanged: (p0) {
+                      password = p0;
+                    },
                   ),
                 ),
                 const SizedBox(
@@ -84,6 +92,9 @@ class _CreateNewPasswordViewState extends State<CreateNewPasswordView> {
                     obscureText: true,
                     isPassword: true,
                     lable: 'Confirm Password',
+                    onChanged: (p0) {
+                      confirmPassword = p0;
+                    },
                   ),
                 ),
                 const SizedBox(
@@ -93,12 +104,23 @@ class _CreateNewPasswordViewState extends State<CreateNewPasswordView> {
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: CustomMainButton(
                     title: 'Reset',
-                    onTap: () {
+                    onTap: () async {
                       if (CreateNewPasswordView._formKey.currentState!
                           .validate()) {
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                        Navigator.pop(context);
+                        if (password == confirmPassword) {
+                          // ignore: unused_local_variable
+                          Map<String, dynamic> data =
+                              await BlocProvider.of<UserCubit>(context)
+                                  .updatePassword(
+                                      context: context,
+                                      email: widget.emailAddress,
+                                      password: password!);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        } else {
+                          showSnackBar(context, "passwords does not match");
+                        }
                       } else {
                         setState(
                           () {

@@ -1,14 +1,15 @@
-
 import 'package:flutter/material.dart';
 import 'package:glauco_care/Core/Constants/colors_const.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GenderWidget extends StatefulWidget {
   const GenderWidget({
-    super.key, required this.choice1, required this.choice2,
+    super.key,
+    required this.choice1,
+    required this.choice2,
   });
-final String choice1;
-final String choice2;
+  final String choice1;
+  final String choice2;
 
   @override
   State<GenderWidget> createState() => _GenderWidgetState();
@@ -39,7 +40,7 @@ class _GenderWidgetState extends State<GenderWidget> {
             decoration: BoxDecoration(
                 color: backgroundColor1,
                 borderRadius: BorderRadius.circular(50),
-                border: Border.all(color: Color(0xFF414141))),
+                border: Border.all(color: const Color(0xFF414141))),
             child: Center(
               child: Text(
                 widget.choice1,
@@ -71,7 +72,7 @@ class _GenderWidgetState extends State<GenderWidget> {
             decoration: BoxDecoration(
                 color: backgroundColor2,
                 borderRadius: BorderRadius.circular(50),
-                border: Border.all(color:const Color(0xFF414141))),
+                border: Border.all(color: const Color(0xFF414141))),
             child: Center(
               child: Text(
                 widget.choice2,

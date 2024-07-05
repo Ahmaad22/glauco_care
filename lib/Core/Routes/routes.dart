@@ -4,8 +4,8 @@ import 'package:glauco_care/Features/Favourites/favourites_view.dart';
 import 'package:glauco_care/Features/History/history_view.dart';
 import 'package:glauco_care/Features/Home/home_view.dart';
 import 'package:glauco_care/Features/Hospitals/hospitals_view.dart';
+import 'package:glauco_care/Features/Massenger/chat_view.dart';
 import 'package:glauco_care/Features/Massenger/messanger.dart';
-import 'package:glauco_care/Features/OnBoarding/CreateNewPassword/create_new_password_view.dart';
 import 'package:glauco_care/Features/OnBoarding/LogIn/login_view.dart';
 import 'package:glauco_care/Features/OnBoarding/OnBoardingView1/onboarding_view1.dart';
 import 'package:glauco_care/Features/OnBoarding/OnBoardingView2/onboarding_view2.dart';
@@ -13,7 +13,6 @@ import 'package:glauco_care/Features/OnBoarding/OnBoardingView3/onboarding_view3
 import 'package:glauco_care/Features/OnBoarding/ResetPassword/reset_password_view.dart';
 import 'package:glauco_care/Features/OnBoarding/SignUp/sign_up_view.dart';
 import 'package:glauco_care/Features/OnBoarding/Splash/splash.dart';
-import 'package:glauco_care/Features/OnBoarding/Verification/verification_view.dart';
 import 'package:glauco_care/Features/Personal%20Details/personal_details.dart';
 import 'package:glauco_care/Features/Profile/profile_view.dart';
 import 'package:glauco_care/Features/Scan/ImageUpload/image_upload.dart';
@@ -55,7 +54,7 @@ class Routes {
           builder: (context) => const OnboardingView3(),
           settings: settings,
         );
-        case SymptomsView.routeName:
+      case SymptomsView.routeName:
         return MaterialPageRoute(
           builder: (context) => const SymptomsView(),
           settings: settings,
@@ -65,26 +64,31 @@ class Routes {
           builder: (context) => const HomeView(),
           settings: settings,
         );
-         case FavouritesView.routeName:
+      case FavouritesView.routeName:
         return MaterialPageRoute(
           builder: (context) => const FavouritesView(),
           settings: settings,
         );
-        case HistoryView.routeName:
+      case ChatView.routeName:
+      // return MaterialPageRoute(
+      //   builder: (context) => const ChatView(),
+      //   settings: settings,
+      // );
+      case HistoryView.routeName:
         return MaterialPageRoute(
           builder: (context) => const HistoryView(),
           settings: settings,
         );
-        case PersonalDetailsView.routeName:
+      case PersonalDetailsView.routeName:
         return MaterialPageRoute(
-          builder: (context) => const PersonalDetailsView(),
+          builder: (context) => PersonalDetailsView(),
           settings: settings,
         );
-        case ResultView.routeName:
-        return MaterialPageRoute(
-          builder: (context) => const ResultView(),
-          settings: settings,
-        );
+      // case ResultView.routeName:
+      //   return MaterialPageRoute(
+      //     builder: (context) => const ResultView(),
+      //     settings: settings,
+      //   );
       case HospitalsView.routeName:
         return MaterialPageRoute(
           builder: (context) => const HospitalsView(),
@@ -105,21 +109,21 @@ class Routes {
           builder: (context) => const LogInView(),
           settings: settings,
         );
-      case CreateNewPasswordView.routeName:
-        return MaterialPageRoute(
-          builder: (context) => const CreateNewPasswordView(),
-          settings: settings,
-        );
+      // case CreateNewPasswordView.routeName:
+      //   return MaterialPageRoute(
+      //     builder: (context) => const CreateNewPasswordView(),
+      //     settings: settings,
+      //   );
       case SignUpView.routeName:
         return MaterialPageRoute(
           builder: (context) => const SignUpView(),
           settings: settings,
         );
-      case VerificationView.routeName:
-        return MaterialPageRoute(
-          builder: (context) => const VerificationView(),
-          settings: settings,
-        );
+      // case VerificationView.routeName:
+      //   return MaterialPageRoute(
+      //     builder: (context) => const VerificationView(),
+      //     settings: settings,
+      //   );
       case MessangerView.routeName:
         return MaterialPageRoute(
           builder: (context) => const MessangerView(),

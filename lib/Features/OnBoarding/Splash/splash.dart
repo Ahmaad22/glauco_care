@@ -7,23 +7,16 @@ import 'package:google_fonts/google_fonts.dart';
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
   static const String routeName = "SplashView";
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient:LinearGradient(
-            colors: [
-
-                                    ConstColors.lightPrimaryColor.withOpacity(.1),
-                                    ConstColors.darkPrimaryColor,
-
-
-                  ],
-                begin: Alignment.topCenter,
-                end:  Alignment.bottomCenter
-          ),
+          gradient: LinearGradient(colors: [
+            ConstColors.lightPrimaryColor.withOpacity(.1),
+            ConstColors.lightPrimaryColor,
+          ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
         child: AnimatedSplashScreen(
           duration: 1500,
@@ -32,7 +25,8 @@ class SplashView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.2),
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.2),
                 child: Image.asset("Assets/Glaucoma.png"),
               ),
               Text(

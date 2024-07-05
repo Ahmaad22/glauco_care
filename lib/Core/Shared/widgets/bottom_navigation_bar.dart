@@ -34,19 +34,18 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         child: GNav(
           color: ConstColors.lightPrimaryColor,
           activeColor: ConstColors.lightPrimaryColor,
-          gap: 6,
+          gap: 16,
           backgroundColor: ConstColors.darkBackgroundColor,
           tabBackgroundColor: const Color(0xFF252836),
           padding: const EdgeInsets.all(16),
           tabBorderRadius: 16,
-          tabs: [
+          tabs: const [
             GButton(
               icon: Icons.home,
               text: "Home",
             ),
             GButton(
-              icon: FontAwesomeIcons.facebookMessenger
-              ,
+              icon: FontAwesomeIcons.facebookMessenger,
               text: "Messanger",
             ),
             GButton(
@@ -54,7 +53,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               text: "Hospitals",
             ),
             GButton(
-  icon: FontAwesomeIcons.hospital,              text: "Scan",
+              icon: FontAwesomeIcons.arrowsToEye,
+              text: "Scan",
             )
           ],
           selectedIndex: _selectedIndex,

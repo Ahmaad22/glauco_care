@@ -14,7 +14,7 @@ class ImageUploadView extends StatelessWidget {
       body: Column(
         children: [
           const CustomAppBar(text: "Image Upload"),
-          SizedBox(
+          const SizedBox(
             height: 60,
           ),
           Padding(
@@ -27,15 +27,17 @@ class ImageUploadView extends StatelessWidget {
                     color: const Color(0x1ef1f1f1))),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 24, right: 24, top: 36,bottom: 24),
+            padding:
+                const EdgeInsets.only(left: 24, right: 24, top: 36, bottom: 24),
             child: CustomMainButton(title: "Upload", onTap: () {}),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: CustomMainButton2(title: "View result", onTap: () {
-              Navigator.pushNamed(context, ResultView.routeName);
-              
-            }),
+            child: CustomMainButton2(
+                title: "View result",
+                onTap: () {
+                  Navigator.pushNamed(context, ResultView.routeName);
+                }),
           ),
         ],
       ),

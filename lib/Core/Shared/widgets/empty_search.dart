@@ -15,7 +15,7 @@ class EmptySearch extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Spacer(
+          const Spacer(
             flex: 1,
           ),
           Icon(
@@ -31,7 +31,7 @@ class EmptySearch extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Padding(
@@ -46,7 +46,7 @@ class EmptySearch extends StatelessWidget {
               ),
             ),
           ),
-          Spacer(
+          const Spacer(
             flex: 1,
           )
         ],

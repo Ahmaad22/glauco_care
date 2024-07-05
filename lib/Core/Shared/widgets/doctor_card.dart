@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:glauco_care/Core/Constants/colors_const.dart';
+import 'package:glauco_care/Core/Models/user_model.dart';
 import 'package:glauco_care/Core/Shared/Customs/custom_main_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DoctorCard extends StatelessWidget {
   const DoctorCard({
     super.key,
+    required this.userModel,
   });
-
+  final UserModel userModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,7 +27,7 @@ class DoctorCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.asset("Assets/doctor.png"),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Column(
@@ -36,22 +38,17 @@ class DoctorCard extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              "Dr Robert",
+                              userModel.name!,
                               style: GoogleFonts.montserrat(
                                 color: ConstColors.lightPrimaryColor,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            Spacer(),
-                            Icon(
-                              Icons.favorite_outline_rounded,
-                              color: ConstColors.lightPrimaryColor,
-                            )
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
                       SizedBox(
@@ -59,7 +56,8 @@ class DoctorCard extends StatelessWidget {
                         child: Column(
                           children: [
                             Text(
-                              "Dr. Robert Hughes, a leading glaucoma specialist, safeguards vision with expertise and compassion.",
+                              userModel.description ??
+                                  "Dr. Robert Hughes, a leading glaucoma specialist, safeguards vision with expertise and compassion.",
                               textAlign: TextAlign.start,
                               style: GoogleFonts.montserrat(
                                 color: ConstColors.whiteColor,
@@ -67,7 +65,7 @@ class DoctorCard extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 16,
                             ),
                             CustomMainButton(

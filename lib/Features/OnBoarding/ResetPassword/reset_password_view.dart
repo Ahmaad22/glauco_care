@@ -1,10 +1,11 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glauco_care/Core/Constants/colors_const.dart';
 import 'package:glauco_care/Core/Shared/Customs/custom_main_button.dart';
 import 'package:glauco_care/Core/Shared/Customs/custom_text_form_field.dart';
 import 'package:glauco_care/Core/Shared/Functions/functions.dart';
 import 'package:glauco_care/Core/Shared/Validation/validation.dart';
+import 'package:glauco_care/Features/Auth/Manager/user_cubit.dart';
 import 'package:glauco_care/Features/OnBoarding/Verification/verification_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,13 +16,13 @@ class ResetPasswordView extends StatefulWidget {
 
   static const String routeName = "ResetPasswordView";
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   @override
   State<ResetPasswordView> createState() => _ResetPasswordViewState();
 }
 
 class _ResetPasswordViewState extends State<ResetPasswordView> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  late String email;
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +35,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
             autovalidateMode: autovalidateMode,
             child: Column(
               children: [
-                const CustomAppBar(
-                ),
+                const CustomAppBar(),
                 const SizedBox(
                   height: 45,
                 ),
@@ -68,6 +68,9 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                     validator: (value) {
                       return Validation.emailValidation(value);
                     },
+                    onChanged: (p1) {
+                      email = p1;
+                    },
                     obscureText: false,
                     isPassword: false,
                     lable: 'Email Address',
@@ -80,9 +83,20 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: CustomMainButton(
                     title: 'Next',
-                    onTap: () {
+                    onTap: () async {
                       if (ResetPasswordView._formKey.currentState!.validate()) {
-                        Navigator.pushNamed(context, VerificationView.routeName);
+                        Map<String, dynamic> data =
+                            await BlocProvider.of<UserCubit>(context)
+                                .sendVerification(
+                                    context: context, email: email);
+                        BlocProvider.of<UserCubit>(context).verficationCode =
+                            data["message"].toString();
+
+                        // ignore: use_build_context_synchronously
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return VerificationView(emailAddress: email);
+                        }));
                       } else {
                         setState(
                           () {
